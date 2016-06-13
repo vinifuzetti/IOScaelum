@@ -16,6 +16,8 @@
 		5F5F48381D0EEE75004E33A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5F48361D0EEE75004E33A2 /* LaunchScreen.storyboard */; };
 		5F5F48431D0EEE75004E33A2 /* ContatosIP67Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5F48421D0EEE75004E33A2 /* ContatosIP67Tests.m */; };
 		5F5F484E1D0EEE75004E33A2 /* ContatosIP67UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5F484D1D0EEE75004E33A2 /* ContatosIP67UITests.m */; };
+		5F5F485D1D0F0E29004E33A2 /* Contato.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5F485C1D0F0E29004E33A2 /* Contato.m */; };
+		5F5F48601D0F3931004E33A2 /* ContatoDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5F485F1D0F3931004E33A2 /* ContatoDAO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		5F5F48491D0EEE75004E33A2 /* ContatosIP67UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContatosIP67UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5F484D1D0EEE75004E33A2 /* ContatosIP67UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContatosIP67UITests.m; sourceTree = "<group>"; };
 		5F5F484F1D0EEE75004E33A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F5F485B1D0F0E29004E33A2 /* Contato.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contato.h; path = ../Contato.h; sourceTree = "<group>"; };
+		5F5F485C1D0F0E29004E33A2 /* Contato.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Contato.m; path = ../Contato.m; sourceTree = "<group>"; };
+		5F5F485E1D0F3931004E33A2 /* ContatoDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContatoDAO.h; sourceTree = "<group>"; };
+		5F5F485F1D0F3931004E33A2 /* ContatoDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContatoDAO.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,9 +110,13 @@
 			isa = PBXGroup;
 			children = (
 				5F5F48281D0EEE75004E33A2 /* AppDelegate.h */,
+				5F5F485B1D0F0E29004E33A2 /* Contato.h */,
+				5F5F485C1D0F0E29004E33A2 /* Contato.m */,
 				5F5F48291D0EEE75004E33A2 /* AppDelegate.m */,
 				5F5F482B1D0EEE75004E33A2 /* FormularioContatoViewController.h */,
 				5F5F482C1D0EEE75004E33A2 /* FormularioContatoViewController.m */,
+				5F5F485E1D0F3931004E33A2 /* ContatoDAO.h */,
+				5F5F485F1D0F3931004E33A2 /* ContatoDAO.m */,
 				5F5F482E1D0EEE75004E33A2 /* Main.storyboard */,
 				5F5F48341D0EEE75004E33A2 /* Assets.xcassets */,
 				5F5F48361D0EEE75004E33A2 /* LaunchScreen.storyboard */,
@@ -273,8 +283,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F5F485D1D0F0E29004E33A2 /* Contato.m in Sources */,
 				5F5F482D1D0EEE75004E33A2 /* FormularioContatoViewController.m in Sources */,
 				5F5F482A1D0EEE75004E33A2 /* AppDelegate.m in Sources */,
+				5F5F48601D0F3931004E33A2 /* ContatoDAO.m in Sources */,
 				5F5F48331D0EEE75004E33A2 /* ContatosIP67.xcdatamodeld in Sources */,
 				5F5F48271D0EEE75004E33A2 /* main.m in Sources */,
 			);
