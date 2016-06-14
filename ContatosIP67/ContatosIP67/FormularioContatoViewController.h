@@ -21,7 +21,7 @@
 //@property NSMutableArray *contatos;
 @property ContatoDAO* dao;
 
-- (IBAction)pegaDadosDoFormulario;
+- (void)pegaDadosDoFormulario;
 
 @end
 

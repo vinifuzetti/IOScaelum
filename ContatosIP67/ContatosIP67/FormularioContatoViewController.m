@@ -15,7 +15,7 @@
 
 @implementation FormularioContatoViewController
 
-- (IBAction)pegaDadosDoFormulario{
+- (void)pegaDadosDoFormulario{
 //  NSLog(@"Botao Clicado");
     NSString *nome = [self.nome text];
     NSString *telefone = [self.telefone text];
@@ -30,9 +30,7 @@
     contato.endereco = endereco;
     contato.site = site;
     
-//  NSLog(@"Nome: %@, Telefone: %@, Email: %@, Endereco: %@, Site: %@", nome, telefone, email, endereco, site);
     [self.dao adiciona:contato];
-//    NSLog(@"Dados: %@", contato);
 }
 
 -(NSObject*)initWithCoder:(NSCoder *)aDecoder{
@@ -40,9 +38,20 @@
     self = [super initWithCoder:aDecoder];
     if(self){
         self.dao = [ContatoDAO instancia];
+        self.navigationItem.title = @"Cadastro";
+        UIBarButtonItem *adicionar = [[UIBarButtonItem alloc]initWithTitle:@"Adicionar"
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(adicionaContato)];
+        self.navigationItem.rightBarButtonItem=adicionar;
     }
     
     return self;
+}
+
+-(void)adicionaContato{
+    [self pegaDadosDoFormulario];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
