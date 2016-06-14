@@ -19,7 +19,9 @@
 @property IBOutlet UITextField *site;
 
 //@property NSMutableArray *contatos;
-@property ContatoDAO* dao;
+@property ContatoDAO *dao;
+
+@property Contato *contato;
 
 - (void)pegaDadosDoFormulario;
 

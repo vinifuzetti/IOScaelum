@@ -17,4 +17,8 @@
 
 +(ContatoDAO*)instancia;
 
+-(Contato *)buscaContatoPosicao: (NSInteger)posicao;
+
+-(void) removeContatoPosicao: (NSInteger)posicao;
+
 @end

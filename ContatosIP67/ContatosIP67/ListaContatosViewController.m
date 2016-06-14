@@ -19,6 +19,8 @@
                                     target:self
                                     action:@selector(abreForm)];
         self.navigationItem.rightBarButtonItem = adiciona;
+        self.navigationItem.leftBarButtonItem = self.editButtonItem;
+        self.dao = [ContatoDAO instancia];
     }
     return self;
 }
@@ -43,10 +45,53 @@
                                                     bundle:nil];
     FormularioContatoViewController *formulario = [board instantiateViewControllerWithIdentifier:@"form"];
     
+    formulario.contato = _ContatoSel;
+    
     [self.navigationController pushViewController:formulario animated:YES];
+    
+    _ContatoSel = nil;
 }
 
 -(NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section{
     return [self.dao.contatos count];
 }
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)table{
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)table cellForRowAtIndexPath:(NSIndexPath *)index{
+    static NSString *cellIdentifier = @"cell";
+    
+    UITableViewCell *cell = [table dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    Contato *contato = [self.dao buscaContatoPosicao: index.row];
+    cell.textLabel.text = contato.nome;
+    
+    return cell;
+    
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
+
+-(void)tableView:(UITableView *)table commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath *)index{
+    if (style == UITableViewCellEditingStyleDelete) {
+        //[self.dao.contatos removeObjectAtIndex:index.row];
+        [self.dao removeContatoPosicao:index.row];
+        [table deleteRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    _ContatoSel = [self.dao buscaContatoPosicao:indexPath.row];
+    [self abreForm];
+}
+
 @end

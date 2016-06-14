@@ -31,4 +31,12 @@ static ContatoDAO *instancia;
     return instancia;
 }
 
+-(Contato *)buscaContatoPosicao: (NSInteger)posicao{
+    return self.contatos[posicao];
+}
+
+-(void) removeContatoPosicao: (NSInteger)posicao {
+    [self.contatos removeObjectAtIndex:posicao];
+}
+
 @end

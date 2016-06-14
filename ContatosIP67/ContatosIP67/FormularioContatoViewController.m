@@ -56,6 +56,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.contato) {
+        self.nome.text = self.contato.nome;
+        self.telefone.text = self.contato.telefone;
+        self.email.text = self.contato.email;
+        self.endereco.text = self.contato.endereco;
+        self.site.text = self.contato.site;
+    }
     // Do any additional setup after loading the view, typically from a nib.
 }
 
