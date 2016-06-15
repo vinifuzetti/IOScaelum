@@ -21,6 +21,7 @@
         self.navigationItem.rightBarButtonItem = adiciona;
         self.navigationItem.leftBarButtonItem = self.editButtonItem;
         self.dao = [ContatoDAO instancia];
+        self.linhaPintada = -1;
     }
     return self;
 }
@@ -46,6 +47,7 @@
     FormularioContatoViewController *formulario = [board instantiateViewControllerWithIdentifier:@"form"];
     
     formulario.contato = _ContatoSel;
+    formulario.delegate = self;
     
     [self.navigationController pushViewController:formulario animated:YES];
     
@@ -92,6 +94,15 @@
     
     _ContatoSel = [self.dao buscaContatoPosicao:indexPath.row];
     [self abreForm];
+}
+
+-(void) highlightNoContato: (Contato*)contato{
+    self.linhaPintada = [self.dao.contatos indexOfObject:contato];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    NSLog(@"Linha Pintada %@", self.linhaPintada);
+    self.linhaPintada = -1;
 }
 
 @end

@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "ContatoDAO.h"
+#import "Contato.h"
 
+@protocol Pintor <NSObject>
+-(void)highlightNoContato:(Contato*)contato;
+
+@end
 @interface FormularioContatoViewController : UIViewController
 
 //@property gera auto o get e set da variavel privada
+@property id <Pintor> delegate;
 @property IBOutlet UITextField *nome;
 @property IBOutlet UITextField *telefone;
 @property IBOutlet UITextField *email;
@@ -20,10 +26,14 @@
 
 //@property NSMutableArray *contatos;
 @property ContatoDAO *dao;
-
 @property Contato *contato;
+//@property ListaContatosViewController *lista;
 
 - (void)pegaDadosDoFormulario;
+
+-(void)adicionaContato;
+
+-(void)alteraContato;
 
 @end
 

@@ -16,21 +16,22 @@
 @implementation FormularioContatoViewController
 
 - (void)pegaDadosDoFormulario{
-//  NSLog(@"Botao Clicado");
+    
     NSString *nome = [self.nome text];
     NSString *telefone = [self.telefone text];
     NSString *email = [self.email text];
     NSString *endereco = [self.endereco text];
     NSString *site = [self.site text];
     
-    Contato *contato = [Contato new];
-    contato.nome = nome;
-    contato.telefone = telefone;
-    contato.email = email;
-    contato.endereco = endereco;
-    contato.site = site;
+    if(!self.contato){
+        self.contato = [Contato new];
+    }
     
-    [self.dao adiciona:contato];
+    self.contato.nome = nome;
+    self.contato.telefone = telefone;
+    self.contato.email = email;
+    self.contato.endereco = endereco;
+    self.contato.site = site;
 }
 
 -(NSObject*)initWithCoder:(NSCoder *)aDecoder{
@@ -39,11 +40,21 @@
     if(self){
         self.dao = [ContatoDAO instancia];
         self.navigationItem.title = @"Cadastro";
-        UIBarButtonItem *adicionar = [[UIBarButtonItem alloc]initWithTitle:@"Adicionar"
+        if (self.contato) {
+            UIBarButtonItem *alterar = [[UIBarButtonItem alloc]initWithTitle:@"Alterar"
+                                                                         style:UIBarButtonItemStylePlain
+                                                                        target:self
+                                                                        action:@selector(alteraContato)];
+            
+            self.navigationItem.rightBarButtonItem=alterar;
+        }else{
+            UIBarButtonItem *adicionar = [[UIBarButtonItem alloc]initWithTitle:@"Adicionar"
                                                                     style:UIBarButtonItemStylePlain
                                                                    target:self
                                                                    action:@selector(adicionaContato)];
-        self.navigationItem.rightBarButtonItem=adicionar;
+        
+            self.navigationItem.rightBarButtonItem=adicionar;
+        }
     }
     
     return self;
@@ -51,12 +62,27 @@
 
 -(void)adicionaContato{
     [self pegaDadosDoFormulario];
+    [self.dao adiciona:self.contato];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)alteraContato{
+    //O tratamento por ponteiro ja atualiza posicao da memoria do contato
+    [self pegaDadosDoFormulario];
+    if (self.delegate) {
+        [self.delegate highlightNoContato: self.contato];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (self.contato) {
+        self.navigationItem.title = @"Alterar";
+        UIBarButtonItem *confirmar = [[UIBarButtonItem alloc]
+                                      initWithTitle:@"Confirmar" style:UIBarButtonItemStylePlain
+                                      target:self action:@selector(alteraContato)];
+        self.navigationItem.rightBarButtonItem = confirmar;
         self.nome.text = self.contato.nome;
         self.telefone.text = self.contato.telefone;
         self.email.text = self.contato.email;

@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "UIKit/UIKit.h"
 #import "ContatoDAO.h"
+#import "FormularioContatoViewController.h"
 
-@interface ListaContatosViewController : UITableViewController
+@interface ListaContatosViewController : UITableViewController <Pintor>
 
 @property ContatoDAO *dao;
 @property Contato *ContatoSel;
+@property NSInteger linhaPintada;
 
+-(void) abreForm;
+-(void) highlightNoContato: (Contato*)contato;
 @end
