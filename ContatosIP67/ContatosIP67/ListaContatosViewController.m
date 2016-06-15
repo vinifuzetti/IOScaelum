@@ -77,7 +77,7 @@
     
 }
 
--(void) viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
     [self.tableView reloadData];
 }
 
@@ -94,7 +94,7 @@
     [self abreForm];
 }
 
--(void) highlightNoContato: (Contato*)contato{
+-(void)highlightNoContato: (Contato*)contato{
     self.linhaPintada = [self.dao.contatos indexOfObject:contato];
 }
 
@@ -103,6 +103,30 @@
         NSIndexPath *path = [NSIndexPath indexPathForRow:self.linhaPintada inSection:0];
         [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         self.linhaPintada = -1;
+    }
+}
+
+-(void)viewDidLoad{
+    UILongPressGestureRecognizer *longClick = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(menuContato:)];
+
+    [self.tableView addGestureRecognizer:longClick];
+}
+
+-(void)menuContato:(UIGestureRecognizer*) gesture{
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        CGPoint ponto = [gesture locationInView:self.tableView];
+        NSIndexPath *path = [self.tableView indexPathForRowAtPoint:ponto];
+        if (path) {
+            Contato *contato = [self.dao buscaContatoPosicao:path.row];
+            UIActionSheet *menuContato = [[UIActionSheet alloc]
+                                          initWithTitle:contato.nome
+                                          delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:nil
+                                          otherButtonTitles:@"Ligar", @"E-mail", @"Site", nil];
+            [menuContato showInView:self.tableView];
+        }
     }
 }
 

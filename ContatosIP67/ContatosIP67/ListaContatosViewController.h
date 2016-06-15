@@ -11,12 +11,13 @@
 #import "ContatoDAO.h"
 #import "FormularioContatoViewController.h"
 
-@interface ListaContatosViewController : UITableViewController <Pintor>
+@interface ListaContatosViewController : UITableViewController <Pintor, UIActionSheetDelegate>
 
 @property ContatoDAO *dao;
 @property Contato *ContatoSel;
 @property NSInteger linhaPintada;
 
--(void) abreForm;
--(void) highlightNoContato: (Contato*)contato;
+-(void)abreForm;
+-(void)highlightNoContato: (Contato*)contato;
+-(void)menuContato:(UIGestureRecognizer*) gesture;
 @end
