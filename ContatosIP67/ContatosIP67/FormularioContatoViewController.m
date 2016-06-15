@@ -7,7 +7,6 @@
 //
 
 #import "FormularioContatoViewController.h"
-#import "Contato.h"
 
 @interface FormularioContatoViewController ()
 

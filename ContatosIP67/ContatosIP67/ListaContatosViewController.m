@@ -7,7 +7,6 @@
 //
 
 #import "ListaContatosViewController.h"
-#import "FormularioContatoViewController.h"
 
 @implementation ListaContatosViewController
 
@@ -91,7 +90,6 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     _ContatoSel = [self.dao buscaContatoPosicao:indexPath.row];
     [self abreForm];
 }
@@ -101,8 +99,11 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    NSLog(@"Linha Pintada %@", self.linhaPintada);
-    self.linhaPintada = -1;
+    if(self.linhaPintada > -1){
+        NSIndexPath *path = [NSIndexPath indexPathForRow:self.linhaPintada inSection:0];
+        [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        self.linhaPintada = -1;
+    }
 }
 
 @end
