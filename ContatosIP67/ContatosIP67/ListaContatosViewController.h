@@ -10,12 +10,14 @@
 #import "UIKit/UIKit.h"
 #import "ContatoDAO.h"
 #import "FormularioContatoViewController.h"
+#import "GerenciadorDeAcoes.h"
 
-@interface ListaContatosViewController : UITableViewController <Pintor, UIActionSheetDelegate>
+@interface ListaContatosViewController : UITableViewController <Pintor>
 
 @property ContatoDAO *dao;
 @property Contato *ContatoSel;
 @property NSInteger linhaPintada;
+@property (readonly) GerenciadorDeAcoes *gerenciador;
 
 -(void)abreForm;
 -(void)highlightNoContato: (Contato*)contato;

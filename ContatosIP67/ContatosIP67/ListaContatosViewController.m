@@ -118,14 +118,9 @@
         CGPoint ponto = [gesture locationInView:self.tableView];
         NSIndexPath *path = [self.tableView indexPathForRowAtPoint:ponto];
         if (path) {
-            Contato *contato = [self.dao buscaContatoPosicao:path.row];
-            UIActionSheet *menuContato = [[UIActionSheet alloc]
-                                          initWithTitle:contato.nome
-                                          delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          destructiveButtonTitle:nil
-                                          otherButtonTitles:@"Ligar", @"E-mail", @"Site", nil];
-            [menuContato showInView:self.tableView];
+            self.ContatoSel = [self.dao buscaContatoPosicao:path.row];
+            _gerenciador = [[GerenciadorDeAcoes alloc]initWitchContato:self.ContatoSel];
+            [self.gerenciador acoesDoController:self];
         }
     }
 }
