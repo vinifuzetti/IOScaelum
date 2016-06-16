@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ListaContatosViewController.h"
+#import "ContatosNoMapaViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,14 +19,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    ListaContatosViewController *lista = [ListaContatosViewController new];
-    UINavigationController *navigation = [[UINavigationController alloc]initWithRootViewController:lista];
-    
     UIScreen *tela = [UIScreen mainScreen];
     CGRect retangulo = [tela bounds];
-    
     self.window = [[UIWindow alloc]initWithFrame:retangulo];
-    self.window.rootViewController = navigation;
+    
+    ListaContatosViewController *lista = [ListaContatosViewController new];
+    ContatosNoMapaViewController *mapa = [ContatosNoMapaViewController new];
+    UINavigationController *navigation = [[UINavigationController alloc]initWithRootViewController:lista];
+    UINavigationController *navMapa = [[UINavigationController alloc]initWithRootViewController:mapa];
+    UITabBarController *tabBar = [UITabBarController new];
+    
+    tabBar.viewControllers = @[navigation, navMapa];
+    
+    
+    self.window.rootViewController = tabBar;
     //Era usado para a tela tenha interaçao com usuario, pode ser retirada
     [self.window makeKeyAndVisible];
     return YES;

@@ -13,6 +13,11 @@
 -(id)init{
     self = [super init];
     if (self) {
+        UIImage *imagemTabItem = [UIImage imageNamed:@"lista-contatos.png"];
+        UITabBarItem *tabItem = [[UITabBarItem alloc]initWithTitle:@"Contatos" image:imagemTabItem tag:2];
+        
+        self.tabBarItem = tabItem;
+        self.navigationItem.title = @"Contatos";
         UIBarButtonItem* adiciona = [[UIBarButtonItem alloc]
                                     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                     target:self
