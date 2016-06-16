@@ -18,6 +18,8 @@
     return self;
 }
 
+//A ideia do DELEGATE e' diminuir o acoplamento, fazendo a interacao de duas Views sem precisar importar a classe inteira.
+//Diminui a dependencia de classes
 -(void)acoesDoController:(UIViewController *)controller{
     self.controller = controller;
     UIActionSheet *opcoes = [[UIActionSheet alloc]initWithTitle:self.contato.nome

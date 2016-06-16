@@ -14,7 +14,7 @@
 -(void)highlightNoContato:(Contato*)contato;
 
 @end
-@interface FormularioContatoViewController : UIViewController
+@interface FormularioContatoViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
 //@property gera auto o get e set da variavel privada
 @property id <Pintor> delegate;
@@ -24,16 +24,20 @@
 @property IBOutlet UITextField *endereco;
 @property IBOutlet UITextField *site;
 
+@property IBOutlet UIButton *botaoImagem;
+
 //@property NSMutableArray *contatos;
 @property ContatoDAO *dao;
 @property Contato *contato;
 //@property ListaContatosViewController *lista;
 
-- (void)pegaDadosDoFormulario;
+-(void)pegaDadosDoFormulario;
 
 -(void)adicionaContato;
 
 -(void)alteraContato;
+
+-(IBAction)selecionarFoto:(id)sender;
 
 @end
 
