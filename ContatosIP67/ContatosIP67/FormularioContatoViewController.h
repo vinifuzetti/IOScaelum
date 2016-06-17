@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ContatoDAO.h"
 #import "Contato.h"
+#import <CoreLocation/CoreLocation.h>
 
 @protocol Pintor <NSObject>
 -(void)highlightNoContato:(Contato*)contato;
@@ -23,8 +24,11 @@
 @property IBOutlet UITextField *email;
 @property IBOutlet UITextField *endereco;
 @property IBOutlet UITextField *site;
+@property IBOutlet UITextField *Latitude;
+@property IBOutlet UITextField *Longitude;
 
 @property IBOutlet UIButton *botaoImagem;
+@property IBOutlet UIActivityIndicatorView *loading;
 
 //@property NSMutableArray *contatos;
 @property ContatoDAO *dao;
@@ -38,6 +42,8 @@
 -(void)alteraContato;
 
 -(IBAction)selecionarFoto:(id)sender;
+
+-(IBAction)buscarCoordenadas:(UIButton*)botaoCood;
 
 @end
 

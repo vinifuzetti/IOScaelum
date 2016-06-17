@@ -32,6 +32,8 @@
     self.contato.email = email;
     self.contato.endereco = endereco;
     self.contato.site = site;
+    self.contato.latitude = [NSNumber numberWithFloat:[self.Latitude.text floatValue]];
+    self.contato.longitude = [NSNumber numberWithFloat:[self.Longitude.text floatValue]];
 }
 
 -(NSObject*)initWithCoder:(NSCoder *)aDecoder{
@@ -88,6 +90,8 @@
         self.email.text = self.contato.email;
         self.endereco.text = self.contato.endereco;
         self.site.text = self.contato.site;
+        self.Latitude.text = [self.contato.latitude stringValue];
+        self.Longitude.text = [self.contato.longitude stringValue];
         if (self.contato.foto) {
             [self.botaoImagem setBackgroundImage:self.contato.foto forState:UIControlStateNormal];
             [self.botaoImagem setTitle:@"" forState: UIControlStateNormal];
@@ -113,6 +117,24 @@
         picker.delegate = self;
         [self presentViewController:picker animated:YES completion:nil];
     }
+}
+
+-(IBAction)buscarCoordenadas:(UIButton*)botaoCood{
+    [self.loading startAnimating];
+    botaoCood.hidden = YES;
+    NSString *endContato = self.endereco.text;
+    CLGeocoder *geo = [CLGeocoder new];
+    [geo geocodeAddressString:endContato completionHandler:^(NSArray *resultados, NSError *erro){
+        if (!erro && [resultados count]>0) {
+            CLPlacemark *resultado = resultados[0];
+            CLLocationCoordinate2D coord = resultado.location.coordinate;
+            self.Latitude.text = [NSString stringWithFormat:@"%f", coord.latitude];
+            self.Longitude.text = [NSString stringWithFormat:@"%f", coord.longitude];
+        }
+        [self.loading stopAnimating];
+        botaoCood.hidden = NO;
+    }];
+    
 }
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
