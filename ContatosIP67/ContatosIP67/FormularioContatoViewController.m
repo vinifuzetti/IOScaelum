@@ -23,7 +23,7 @@
     NSString *site = [self.site text];
     
     if(!self.contato){
-        self.contato = [Contato new];
+        self.contato = [self.dao geraContato];
     }
     
     self.contato.foto = [self.botaoImagem backgroundImageForState:UIControlStateNormal];

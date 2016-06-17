@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import <MapKit/MapKit.h>
 
-@interface Contato : NSObject
+@interface Contato : NSManagedObject <MKAnnotation>
 
 @property NSString *nome;
 @property NSString *telefone;

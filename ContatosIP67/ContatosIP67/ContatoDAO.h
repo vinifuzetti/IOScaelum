@@ -8,10 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "Contato.h"
+#import <CoreData/CoreData.h>
 
 @interface ContatoDAO : NSObject
 
 @property NSMutableArray *contatos;
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+- (void)saveContext;
+
+- (NSURL *)applicationDocumentsDirectory;
 
 -(void)adiciona:(Contato*)contato;
 
@@ -20,5 +28,9 @@
 -(Contato *)buscaContatoPosicao: (NSInteger)posicao;
 
 -(void) removeContatoPosicao: (NSInteger)posicao;
+
+-(Contato*) geraContato;
+
+-(void)lista;
 
 @end
